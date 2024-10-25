@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: 欢迎来到陈磊的 Web PPT
+title: 陈磊的 Web PPT Demo
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
