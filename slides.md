@@ -4,8 +4,10 @@ theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
+# 网页的标题模板，`%s` 会被页面的标题替换。默认值是 %s - Slidev
+titleTemplate: '%s'
 # some information about your slides (markdown enabled)
-title: 陈磊的 Web PPT Demo
+title: 陈磊的 Web PPT
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -21,7 +23,7 @@ transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 # take snapshot for each slide in the overview
-overviewSnapshots: true
+overviewSnapshots: true # TODO 暂时没有明白什么意思
 ---
 
 # 欢迎来到陈磊的 Web PPT
