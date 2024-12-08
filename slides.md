@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+background: /home.jpg # background: https://cover.sli.dev
 # 网页的标题模板，`%s` 会被页面的标题替换。默认值是 %s - Slidev
 titleTemplate: '%s'
 # some information about your slides (markdown enabled)
@@ -49,7 +49,7 @@ layout: two-cols
 hideInToc: true
 ---
 
-# 目录：
+# 目录
 
 ::right::
 
@@ -110,6 +110,8 @@ transition: fade-out
 
 # 快速上手
 
+<v-switch>
+<template #1>
 在终端运行以下命令来创建一个新的 Slidev 项目：
 
 npm:
@@ -126,9 +128,128 @@ yarn:
 ```shell
 yarn create slidev
 ```
-
 <br>
 根据指引，输入项目名称并按照提示完成项目创建。幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示。
+</template>
+
+<template #2>
+  <div style="display: flex; justify-content: center;">
+    <img src="/quick-start.png" style="height: 450px;" />
+  </div>
+</template>
+</v-switch>
+
+
+---
+transition: fade-out
+---
+
+# 语法 --- Frontmatter 和 Headmatter
+
+在每张幻灯片的开头，你可以添加一个可选的 frontmatter 来配置幻灯片。第一个 frontmatter 块称为 headmatter，可以配置整个幻灯片集。其余的是用于单个幻灯片的 frontmatters
+
+```md
+---
+theme: seriph
+title: Welcome to Slidev
+---
+
+# 第一页
+
+第一页的 frontmatter 也是整个演示文稿的 headmatter
+
+---
+layout: center
+background: /background-1.png
+---
+
+# 第二页
+
+本页的布局是 `center`，背景是一张图片
+```
+
+
+---
+transition: fade-out
+---
+
+# 语法 --- 备注
+
+每张幻灯片的末尾的注释块（若有），将被视为幻灯片的备注。它们将在用户界面中显示，以供您在演示过程中参考
+
+```md
+---
+layout: cover
+---
+
+# 第一页
+
+封面页
+
+<!-- 这是一段备注 -->
+
+```
+
+
+---
+transition: slide-up
+---
+
+# 语法 --- 代码块
+
+```ts {all|1|3-4|6|all} twoslash
+import { computed, ref } from 'vue'
+
+const count = ref(0)
+const doubled = computed(() => count.value * 2)
+
+doubled.value = 2
+
+// 无论代码块的第一行代码代码是什么位置，行号都是从1开始
+// 显示步骤：1全部代码高亮 2第一行代码高亮 3第三至第四行代码高亮 4第六行代码高亮 5全部代码高亮
+```
+
+<arrow v-click="[3, 4]" x1="350" y1="190" x2="155" y2="235" color="#953" width="2" arrowSize="1" />
+
+[了解更多](https://cn.sli.dev/guide/syntax#code-block)
+
+
+---
+transition: slide-up
+---
+
+# 内置组件 --- Arrow
+
+绘制一个箭头。
+
+```md
+<Arrow x1="10" y1="20" x2="100" y2="200" />
+```
+
+参数：
+
+- `x1` (`string | number`, 必要值): 起始 x 位置
+- `y1` (`string | number`, 必要值): 起始 y 位置
+- `x2` (`string | number`, 必要值): 终点 x 位置
+- `y2` (`string | number`, 必要值): 终点 y 位置
+- `width` (`string | number`, 默认为: `2`): 线宽
+- `color` (`string`, 默认为: `'currentColor'`): 颜色
+- `two-way` (`boolean`, default: `false`): draw a two-way arrow
+
+
+---
+transition: slide-up
+---
+
+# 内置组件 --- Toc
+
+<div v-click="[1, 2]">
+  使用方式：
+
+  ```md
+  <Toc />
+  ```
+</div>
 
 
 ---
@@ -157,59 +278,8 @@ level: 2
 />
 <p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
 
----
-layout: image-right
-image: https://cover.sli.dev
----
 
-# Code
 
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
 
 ---
 level: 2
