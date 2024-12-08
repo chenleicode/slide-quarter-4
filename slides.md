@@ -26,23 +26,16 @@ mdc: true
 overviewSnapshots: true # TODO 暂时没有明白什么意思
 ---
 
-# 欢迎来到陈磊的 Web PPT
-
-以后我将尝试使用 Slidev 来写 PPT，这太酷了
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    点击空格到下一页 <carbon:arrow-right class="inline"/>
-  </span>
-</div>
+# 第四季度技术分享
 
 <div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/chenlei0608/slidev-demo-1024" target="_blank" alt="GitHub" title="Open in GitHub"
+  <a href="https://github.com/chenlei0608/slidev-demo-1024" target="_blank" alt="GitHub" title="此幻灯片的GitHub地址"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
+  </a>
+  <a href="https://chenlei0608.github.io/blog/" target="_blank" alt="GitHub" title="陈磊的博客"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon:earth-americas-filled />
   </a>
 </div>
 
@@ -50,30 +43,50 @@ overviewSnapshots: true # TODO 暂时没有明白什么意思
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
 
+
+---
+layout: two-cols
+hideInToc: true
+---
+
+# 目录：
+
+::right::
+
+<Toc v-click minDepth="1" maxDepth="1"></Toc>
+
+<style>
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+</style>
+
+
 ---
 transition: fade-out
 ---
 
-# What is Slidev?
+# 什么是 Slidev ？
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+Slidev 是一个为开发者设计的幻灯片制作和演示工具，具有以下特点：
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
+- 📝 [**Markdown 支持**](https://cn.sli.dev/guide/syntax.html) —— 使用你最喜欢的编辑器和工作流编写 Markdown 文件
+- 🧑‍💻 [**对开发者友好**](https://cn.sli.dev/guide/syntax.html#code-blocks) —— 内置代码高亮、实时编码等功能
+- 🌈 [**灵活样式**](https://cn.sli.dev/guide/syntax.html#embedded-styles) —— 使用 [Windi CSS](https://windicss.org/) 按需使用的实用类和易用的内嵌样式表
+- 🤹 [**交互**](https://cn.sli.dev/custom/directory-structure.html#components) —— 无缝嵌入 Vue 组件
+- 🎙 [**演示者模式**](https://cn.sli.dev/guide/presenter-mode.html) —— 可以使用另一个窗口，甚至是你的手机来控制幻灯片
+- 📰 [**图表支持**](https://cn.sli.dev/guide/syntax.html#diagrams) —— 使用文本描述语言创建图表
+- 🌟 [**图标**](https://cn.sli.dev/guide/syntax.html#icons) —— 能够直接从任意图标库中获取图标
+- 🎥 [**录制**](https://cn.sli.dev/guide/recording.html) —— 内置录制功能和摄像头视图
+- 📤 [**跨平台**](https://cn.sli.dev/guide/exporting.html) —— 能够导出 PDF、PNG 文件，甚至是一个可以托管的单页应用
+- ⚡️ [**快速**](https://vitejs.dev) —— 基于 [Vite](https://vitejs.dev) 的即时重载
+- 🛠 [**可配置**](https://cn.sli.dev/custom/config-vite.html) —— 支持使用 Vite 插件、Vue 组件以及任何的 npm 包
 <br>
-<br>
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
+阅读更多关于 [为什么选择 Slidev？](https://sli.dev/guide/why)
 
 <style>
 h1 {
@@ -92,50 +105,57 @@ Here is another comment.
 -->
 
 ---
+transition: fade-out
+---
+
+# 快速上手
+
+在终端运行以下命令来创建一个新的 Slidev 项目：
+
+npm:
+```shell
+npm init slidev@latest
+```
+
+pnpm:
+```shell
+pnpm create slidev
+```
+
+yarn:
+```shell
+yarn create slidev
+```
+
+<br>
+根据指引，输入项目名称并按照提示完成项目创建。幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示。
+
+
+---
 transition: slide-up
 level: 2
 ---
 
-# Navigation
+# 导航
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+将鼠标悬停在左下角以查看导航控制面板，[了解更多](https://cn.sli.dev/guide/ui#navigation-bar)
 
-## Keyboard Shortcuts
+## 键盘快捷键
 
 |     |     |
 | --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+| <kbd>右</kbd> / <kbd>空格</kbd>| 下一个动画或幻灯片 |
+| <kbd>左</kbd>  / <kbd>Shift</kbd><kbd>空格</kbd> | 上一个动画或幻灯片 |
+| <kbd>上</kbd> | 上一张幻灯片 |
+| <kbd>下</kbd> | 下一张幻灯片 |
 
-<!-- https://sli.dev/guide/animations.html#click-animation -->
 <img
   v-click
   class="absolute -bottom-9 -left-7 w-80 opacity-50"
   src="https://sli.dev/assets/arrow-bottom-left.svg"
   alt=""
 />
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
+<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
 
 ---
 layout: image-right
