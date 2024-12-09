@@ -30,10 +30,7 @@ overviewSnapshots: true # TODO 暂时没有明白什么意思
 # 第四季度技术分享
 
 <div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="此幻灯片的GitHub地址"
+  <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="GitHub 地址"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
@@ -54,14 +51,13 @@ hideInToc: true
 
 ::right::
 
-<Toc v-click minDepth="1" maxDepth="1"></Toc>
+<Toc v-click minDepth="1" maxDepth="1" columns="1" class="toc-class" />
 
 <style>
+.toc-class {}
 h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
+  margin-top: 200px;
+  margin-left: 100px;
 }
 </style>
 
@@ -133,23 +129,22 @@ transition: fade-out
 
 <v-switch>
 <template #1>
+<br>
 在终端运行以下命令来创建一个新的 Slidev 项目：
 
-npm:
-```shell
-npm init slidev@latest
-```
-
-pnpm:
-```shell
-pnpm create slidev
-```
-
-yarn:
-```shell
-yarn create slidev
-```
 <br>
+
+```sh
+npm init slidev@latest # npm
+
+pnpm create slidev # pnpm
+
+yarn create slidev # yarn
+```
+
+<br>
+<br>
+
 根据指引，输入项目名称并按照提示完成项目创建。幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示。
 </template>
 
@@ -263,18 +258,28 @@ transition: slide-up
 
 
 ---
+layout: two-cols
 transition: slide-up
 ---
 
 # 内置组件 --- Toc
 
-<div v-click="[1, 2]">
-  使用方式：
+<div v-click="[1, 2]" style="margin-top: 170px; margin-right: 30px;">
+  <div style="margin-bottom: 20px;">
+    使用方式：
+  </div>
+
 
   ```md
   <Toc />
   ```
 </div>
+
+::right::
+
+示例：
+
+<Toc mode="onlyCurrentTree" />
 
 
 ---
