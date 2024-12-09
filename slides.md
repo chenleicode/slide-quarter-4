@@ -3,8 +3,9 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: /home.jpg # background: https://cover.sli.dev
-# 网页的标题模板，`%s` 会被页面的标题替换。默认值是 %s - Slidev
+# background: https://cover.sli.dev
+background: /home.jpg
+# 网页的标题模板，`%s` 会被页面的标题(title)替换。默认值是 %s - Slidev
 titleTemplate: '%s'
 # some information about your slides (markdown enabled)
 title: 陈磊的 Web PPT
@@ -39,9 +40,6 @@ overviewSnapshots: true # TODO 暂时没有明白什么意思
   </a>
 </div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
 
 
 ---
@@ -63,6 +61,7 @@ h1 {
   height: 50vh;
 }
 </style>
+
 
 
 ---
@@ -100,9 +99,28 @@ h1 {
 }
 </style>
 
-<!--
-Here is another comment.
--->
+
+
+---
+transition: fade-out
+---
+
+# Slidev 技术栈
+
+Slidev 基于以下工具和技术构建：
+
+- [**Vite**](https://vitejs.dev) - 一款极速响应的下一代的前端工具链
+- [**Vue 3**](https://v3.vuejs.org/) powered [**Markdown**](https://daringfireball.net/projects/markdown/syntax) - 用于编写幻灯片内容
+- [**UnoCSS**](https://github.com/unocss/unocss) - 帮助快速构建幻灯片样式
+- [**Shiki**](https://github.com/shikijs/shiki), [**Monaco Editor**](https://github.com/Microsoft/monaco-editor) - 为在幻灯片中嵌入代码提供一流支持
+- [**RecordRTC**](https://recordrtc.org) - 内置的录制工具和摄像头视图
+- [**VueUse**](https://vueuse.org) 系列 - [`@vueuse/core`](https://github.com/vueuse/vueuse), [`@vueuse/head`](https://github.com/vueuse/head), [`@vueuse/motion`](https://github.com/vueuse/motion), 等等
+- [**Iconify**](https://iconify.design/) - 用图标集丰富你的幻灯片
+- [**Drauu**](https://github.com/antfu/drauu) - 用于在幻灯片上绘图和批注
+- [**KaTeX**](https://katex.org/) - 用于渲染 LaTeX 数学公式
+- [**Mermaid**](https://mermaid-js.github.io/mermaid) - 基于文本的图表绘制工具
+
+
 
 ---
 transition: fade-out
@@ -140,6 +158,7 @@ yarn create slidev
 </v-switch>
 
 
+
 ---
 transition: fade-out
 ---
@@ -169,6 +188,7 @@ background: /background-1.png
 ```
 
 
+
 ---
 transition: fade-out
 ---
@@ -189,6 +209,7 @@ layout: cover
 <!-- 这是一段备注 -->
 
 ```
+
 
 
 ---
@@ -212,6 +233,7 @@ doubled.value = 2
 <arrow v-click="[3, 4]" x1="350" y1="190" x2="155" y2="235" color="#953" width="2" arrowSize="1" />
 
 [了解更多](https://cn.sli.dev/guide/syntax#code-block)
+
 
 
 ---
