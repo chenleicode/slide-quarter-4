@@ -30,7 +30,10 @@ overviewSnapshots: true # TODO 暂时没有明白什么意思
 # 第四季度技术分享
 
 <div class="abs-br m-6 flex gap-2">
-  <a href="https://github.com/chenlei0608/slidev-demo-1024" target="_blank" alt="GitHub" title="此幻灯片的GitHub地址"
+  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon:edit />
+  </button>
+  <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="此幻灯片的GitHub地址"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
