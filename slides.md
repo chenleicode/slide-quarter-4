@@ -81,7 +81,6 @@ Slidev 是一个为开发者设计的幻灯片制作和演示工具，具有以�
 - 🎥 [**录制**](https://cn.sli.dev/guide/recording.html) —— 内置录制功能和摄像头视图
 - 📤 [**跨平台**](https://cn.sli.dev/guide/exporting.html) —— 能够导出 PDF、PNG 文件，甚至是一个可以托管的单页应用
 - ⚡️ [**快速**](https://vitejs.dev) —— 基于 [Vite](https://vitejs.dev) 的即时重载
-- 🛠 [**可配置**](https://cn.sli.dev/custom/config-vite.html) —— 支持使用 Vite 插件、Vue 组件以及任何的 npm 包
 <br>
 
 阅读更多关于 [为什么选择 Slidev？](https://sli.dev/guide/why)
@@ -127,12 +126,9 @@ transition: fade-out
 
 # 快速上手
 
-<v-switch>
-<template #1>
-<br>
-在终端运行以下命令来创建一个新的 Slidev 项目：
+<div v-click>在终端运行以下命令来创建一个新的 Slidev 项目：</div>
 
-<br>
+<div v-click>
 
 ```sh
 npm init slidev@latest # npm
@@ -142,19 +138,17 @@ pnpm create slidev # pnpm
 yarn create slidev # yarn
 ```
 
-<br>
-<br>
+</div>
 
-根据指引，输入项目名称并按照提示完成项目创建。幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示。
-</template>
+<div v-click class="mt5">根据指引，输入项目名称，并按照提示完成项目创建</div>
 
-<template #2>
-  <div style="display: flex; justify-content: center;">
-    <img src="/quick-start.png" style="height: 450px;" />
-  </div>
-</template>
-</v-switch>
+<div v-click class="mt5">幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示</div>
 
+
+
+---
+
+<img src="/quick-start.png" style="height: 100%; display: block; margin: 0 auto;" />
 
 
 ---
@@ -258,28 +252,27 @@ transition: slide-up
 
 
 ---
-layout: two-cols
 transition: slide-up
 ---
 
-# 内置组件 --- Toc
+# 内置布局
 
-<div v-click="[1, 2]" style="margin-top: 170px; margin-right: 30px;">
-  <div style="margin-bottom: 20px;">
-    使用方式：
-  </div>
+```md
+---
+layout: xxx # 布局
+---
+```
 
+- center, 在屏幕中间展示内容。
+- cover, 用来展示演讲稿的封面页，可以包含演讲的标题、演讲者、时间等。
+- image-left, 在屏幕左侧展示图片，屏幕右侧展示内容。
+- quote, 突出显示引文。
+- none, 没有任何样式的布局。
+- intro, 介绍演讲稿，通​​常带有演讲稿标题、简述、作者等信息。
+- two-cols, 将页面内容分为两列。
+- ...
 
-  ```md
-  <Toc />
-  ```
-</div>
-
-::right::
-
-示例：
-
-<Toc mode="onlyCurrentTree" />
+<div class="mt10" v-click>除了以上内置布局，也可以自定义布局</div>
 
 
 ---
@@ -309,154 +302,91 @@ level: 2
 <p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
 
 
+---
+layout: default
+---
+
+# 部署
+
+使用 GitHub + GitHub Pages 部署
+
+通过 GitHub Actions 在 GitHub Pages 上部署你的幻灯片，请按照以下步骤操作：
+
+1. 在你的仓库中上传所有项目文件（例如命名为 repo-name）
+2. 创建 .github/workflows/deploy.yml 文件，编写合适的内容，以通过 GitHub Actions 将你的幻灯片部署到 GitHub Pages
+3. 在你的仓库中，转到 Settings > Pages。在 Build and deployment 下，选择 GitHub Actions
+4. 最后，将更改推送到 main 分支并等待 GitHub Action 工作流完成。你应该看到站点部署到 https://username.github.io/repo-name/ 或 https://custom-domain/，这取决于你的设置。你的站点将在每次推送到 main 分支时自动部署。
+
 
 
 ---
-level: 2
+
+
+<img src="/deploy-settings.png" style="height: 100%; display: block; margin: 0 auto;" />
+
+
+
 ---
 
-# Shiki Magic Move
+```md {all}{maxHeight: '100%'}
+name: Deploy My Slide
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Setup @antfu/ni
+        run: npm i -g @antfu/ni
+
+      - name: Install dependencies
+        run: nci
+
+      - name: Build
+        run: nr build --base /${{github.event.repository.name}}/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
 ```
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
 
 ---
 
@@ -575,181 +505,6 @@ const final = {
 
 </div>
 
----
-
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
 
 
 ---
@@ -761,6 +516,7 @@ layout: cover
 如果稍不注意，提交历史就会不那么好看了，这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
 
 ![混乱的提交历史](/chaotic-git-commit-history.png)
+
 
 
 ---
@@ -785,6 +541,7 @@ layout: cover
 2. 即使有冲突，此时还没有 commit 操作，解决冲突后，执行 add 和 commit 操作，还是会只有一次提交记录
 
 
+
 ---
 layout: cover
 ---
@@ -807,7 +564,6 @@ git push
 
 
 ---
-
 
 <img src="/git-pull--rebase.png" style="height: 100%; display: block; margin: 0 auto;" />
 
