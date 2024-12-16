@@ -425,125 +425,93 @@ also allows you to add
 
 </div>
 
+
+
 ---
 
-# Motions
+# LF
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+<div v-click>当前有两种主流换行符，分别是 LF(linux, mac)，CRLF(windows)</div>
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
+<span v-click>对于 Windows 用户，应该使用哪一种呢？</span><span v-click style="color: red">LF</span>
+
+<div v-click class="mt5">
+原因：
+
+- 绝大多数项目都是强制使用 LF, 有的必须要在本地使用类似 editorconfig 的工具强制转换后才能提交
+- 讨厌的 warning
+<img src="/git-add.png" />
+- 使用多数前端脚手架生成的代码都是 LF，原有代码是 CRLF
+- 提高跨平台兼容性
+- ...
+
 </div>
+
+
+
+---
+
+# LF
+
+<div class="mt8">
+
+如何使用：
+
+```sh
+# git 全局设置
+git config --global core.autocrlf input
 ```
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
+```json
+// vscode settings.json
+"files.eol": "\n",
+```
 
 </div>
 
 
 
 ---
-layout: cover
----
 
-想象一个场景：同事a和同事b因某种原因共用一个开发分支 feature，同事a写了一堆代码，提交了一次代码，同事b此时也写了一堆代码，也要提交一次代码。
+<div v-click>场景：同事a和同事b因某种原因共用一个开发分支 git-test-1，同事a写了一堆代码，提交了代码，同事b此时也写了一堆代码，也要提交代码。</div>
 
-如果稍不注意，提交历史就会不那么好看了，这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
+<div v-click><img src="/git-commit.png" /></div>
 
-![混乱的提交历史](/chaotic-git-commit-history.png)
+<div v-click class="mt8">如果稍不注意，提交历史就会不那么好看了</div>
 
+<div v-click class="mt2">
+这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
 
-
----
-layout: cover
----
-
-git pull = git fetch + git merge，在执行 git pull 时，其实是有一步合并操作的
+<img src="/chaotic-git-commit-history.png" />
+</div>
 
 
 
 ---
-layout: cover
+layout: center
+---
+
+git pull = git fetch + git merge
+
+在执行 git pull 时，其实是有一步合并操作的
+
+
+
 ---
 
 # 解决办法1
 
-每次 add 前先执行 pull，如果有冲突，本地解决冲突，然后提交（如果在commit后，另外有一个同事就在此时提交代码到远程仓库了，此方法是不能保证线性提交历史的）
+<div v-click>
+每次 add 前先执行 pull，如果有冲突，本地解决冲突(stash 解决)，然后提交
 
 上文说到 git pull 其实是有 merge 操作的，那这样为什么可以保证线性提交历史呢？原因：
 
 1. 没有冲突的情况下是会默认执行了快进合并，此时不会强制创建合并提交历史的
-2. 即使有冲突，此时还没有 commit 操作，解决冲突后，执行 add 和 commit 操作，还是会只有一次提交记录
+2. 即使有冲突，此时还没有 commit 操作，解决冲突后，执行 add 和 commit 操作，还是会只有一次提交记录(如果使用commit解决冲突，还是保证不了线性提交历史)
+</div>
 
 
 
----
-layout: cover
 ---
 
 # 解决办法2(终极解决办法)
