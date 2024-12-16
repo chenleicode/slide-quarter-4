@@ -3,8 +3,9 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# 网页的标题模板，`%s` 会被页面的标题替换。默认值是 %s - Slidev
+# background: https://cover.sli.dev
+background: /home.jpg
+# 网页的标题模板，`%s` 会被页面的标题(title)替换。默认值是 %s - Slidev
 titleTemplate: '%s'
 # some information about your slides (markdown enabled)
 title: 陈磊的 Web PPT
@@ -26,54 +27,63 @@ mdc: true
 overviewSnapshots: true # TODO 暂时没有明白什么意思
 ---
 
-# 欢迎来到陈磊的 Web PPT
-
-以后我将尝试使用 Slidev 来写 PPT，这太酷了
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    点击空格到下一页 <carbon:arrow-right class="inline"/>
-  </span>
-</div>
+# 第四季度技术分享
 
 <div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="Open in GitHub"
+  <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="GitHub 地址"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
+  <a href="https://chenlei0608.github.io/blog/" target="_blank" alt="GitHub" title="陈磊的博客"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon:earth-americas-filled />
+  </a>
 </div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+
+
+---
+layout: two-cols
+hideInToc: true
+---
+
+# 目录
+
+::right::
+
+<Toc v-click minDepth="1" maxDepth="1" columns="1" class="toc-class" />
+
+<style>
+.toc-class {}
+h1 {
+  margin-top: 200px;
+  margin-left: 100px;
+}
+</style>
+
+
 
 ---
 transition: fade-out
 ---
 
-# What is Slidev?
+# 什么是 Slidev ？
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+Slidev 是一个为开发者设计的幻灯片制作和演示工具，具有以下特点：
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
+- 📝 [**Markdown 支持**](https://cn.sli.dev/guide/syntax.html) —— 使用你最喜欢的编辑器和工作流编写 Markdown 文件
+- 🧑‍💻 [**对开发者友好**](https://cn.sli.dev/guide/syntax.html#code-blocks) —— 内置代码高亮、实时编码等功能
+- 🌈 [**灵活样式**](https://cn.sli.dev/guide/syntax.html#embedded-styles) —— 使用 [Windi CSS](https://windicss.org/) 按需使用的实用类和易用的内嵌样式表
+- 🤹 [**交互**](https://cn.sli.dev/custom/directory-structure.html#components) —— 无缝嵌入 Vue 组件
+- 🎙 [**演示者模式**](https://cn.sli.dev/guide/presenter-mode.html) —— 可以使用另一个窗口，甚至是你的手机来控制幻灯片
+- 📰 [**图表支持**](https://cn.sli.dev/guide/syntax.html#diagrams) —— 使用文本描述语言创建图表
+- 🌟 [**图标**](https://cn.sli.dev/guide/syntax.html#icons) —— 能够直接从任意图标库中获取图标
+- 🎥 [**录制**](https://cn.sli.dev/guide/recording.html) —— 内置录制功能和摄像头视图
+- 📤 [**跨平台**](https://cn.sli.dev/guide/exporting.html) —— 能够导出 PDF、PNG 文件，甚至是一个可以托管的单页应用
+- ⚡️ [**快速**](https://vitejs.dev) —— 基于 [Vite](https://vitejs.dev) 的即时重载
 <br>
-<br>
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
+阅读更多关于 [为什么选择 Slidev？](https://sli.dev/guide/why)
 
 <style>
 h1 {
@@ -87,256 +97,296 @@ h1 {
 }
 </style>
 
-<!--
-Here is another comment.
--->
+
+
+---
+transition: fade-out
+---
+
+# Slidev 技术栈
+
+Slidev 基于以下工具和技术构建：
+
+- [**Vite**](https://vitejs.dev) - 一款极速响应的下一代的前端工具链
+- [**Vue 3**](https://v3.vuejs.org/) powered [**Markdown**](https://daringfireball.net/projects/markdown/syntax) - 用于编写幻灯片内容
+- [**UnoCSS**](https://github.com/unocss/unocss) - 帮助快速构建幻灯片样式
+- [**Shiki**](https://github.com/shikijs/shiki), [**Monaco Editor**](https://github.com/Microsoft/monaco-editor) - 为在幻灯片中嵌入代码提供一流支持
+- [**RecordRTC**](https://recordrtc.org) - 内置的录制工具和摄像头视图
+- [**VueUse**](https://vueuse.org) 系列 - [`@vueuse/core`](https://github.com/vueuse/vueuse), [`@vueuse/head`](https://github.com/vueuse/head), [`@vueuse/motion`](https://github.com/vueuse/motion), 等等
+- [**Iconify**](https://iconify.design/) - 用图标集丰富你的幻灯片
+- [**Drauu**](https://github.com/antfu/drauu) - 用于在幻灯片上绘图和批注
+- [**KaTeX**](https://katex.org/) - 用于渲染 LaTeX 数学公式
+- [**Mermaid**](https://mermaid-js.github.io/mermaid) - 基于文本的图表绘制工具
+
+
+
+---
+transition: fade-out
+---
+
+# 快速上手
+
+<div v-click>在终端运行以下命令来创建一个新的 Slidev 项目：</div>
+
+<div v-click>
+
+```sh
+npm init slidev@latest # npm
+
+pnpm create slidev # pnpm
+
+yarn create slidev # yarn
+```
+
+</div>
+
+<div v-click class="mt5">根据指引，输入项目名称，并按照提示完成项目创建</div>
+
+<div v-click class="mt5">幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示</div>
+
+
+
+---
+
+<img src="/quick-start.png" style="height: 100%; display: block; margin: 0 auto;" />
+
+
+---
+transition: fade-out
+---
+
+# 语法 --- Frontmatter 和 Headmatter
+
+在每张幻灯片的开头，你可以添加一个可选的 frontmatter 来配置幻灯片。第一个 frontmatter 块称为 headmatter，可以配置整个幻灯片集。其余的是用于单个幻灯片的 frontmatters
+
+```md
+---
+theme: seriph
+title: Welcome to Slidev
+---
+
+# 第一页
+
+第一页的 frontmatter 也是整个演示文稿的 headmatter
+
+---
+layout: center
+background: /background-1.png
+---
+
+# 第二页
+
+本页的布局是 `center`，背景是一张图片
+```
+
+
+
+---
+transition: fade-out
+---
+
+# 语法 --- 备注
+
+每张幻灯片的末尾的注释块（若有），将被视为幻灯片的备注。它们将在用户界面中显示，以供您在演示过程中参考
+
+```md
+---
+layout: cover
+---
+
+# 第一页
+
+封面页
+
+<!-- 这是一段备注 -->
+
+```
+
+
 
 ---
 transition: slide-up
-level: 2
 ---
 
-# Navigation
+# 语法 --- 代码块
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
+```ts {all|1|3-4|6|all} twoslash
 import { computed, ref } from 'vue'
 
 const count = ref(0)
 const doubled = computed(() => count.value * 2)
 
 doubled.value = 2
+
+// 无论代码块的第一行代码代码是什么位置，行号都是从1开始
+// 显示步骤：1全部代码高亮 2第一行代码高亮 3第三至第四行代码高亮 4第六行代码高亮 5全部代码高亮
 ```
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
+<arrow v-click="[3, 4]" x1="350" y1="190" x2="155" y2="235" color="#953" width="2" arrowSize="1" />
 
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
+[了解更多](https://cn.sli.dev/guide/syntax#code-block)
 
-<!-- Footer -->
 
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
 
 ---
+transition: slide-up
+---
+
+# 内置组件 --- Arrow
+
+绘制一个箭头。
+
+```md
+<Arrow x1="10" y1="20" x2="100" y2="200" />
+```
+
+参数：
+
+- `x1` (`string | number`, 必要值): 起始 x 位置
+- `y1` (`string | number`, 必要值): 起始 y 位置
+- `x2` (`string | number`, 必要值): 终点 x 位置
+- `y2` (`string | number`, 必要值): 终点 y 位置
+- `width` (`string | number`, 默认为: `2`): 线宽
+- `color` (`string`, 默认为: `'currentColor'`): 颜色
+- `two-way` (`boolean`, default: `false`): draw a two-way arrow
+
+
+---
+transition: slide-up
+---
+
+# 内置布局
+
+```md
+---
+layout: xxx # 布局
+---
+```
+
+- center, 在屏幕中间展示内容。
+- cover, 用来展示演讲稿的封面页，可以包含演讲的标题、演讲者、时间等。
+- image-left, 在屏幕左侧展示图片，屏幕右侧展示内容。
+- quote, 突出显示引文。
+- none, 没有任何样式的布局。
+- intro, 介绍演讲稿，通​​常带有演讲稿标题、简述、作者等信息。
+- two-cols, 将页面内容分为两列。
+- ...
+
+<div class="mt10" v-click>除了以上内置布局，也可以自定义布局</div>
+
+
+---
+transition: slide-up
 level: 2
 ---
 
-# Shiki Magic Move
+# 导航
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+将鼠标悬停在左下角以查看导航控制面板，[了解更多](https://cn.sli.dev/guide/ui#navigation-bar)
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+## 键盘快捷键
 
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
+|     |     |
+| --- | --- |
+| <kbd>右</kbd> / <kbd>空格</kbd>| 下一个动画或幻灯片 |
+| <kbd>左</kbd>  / <kbd>Shift</kbd><kbd>空格</kbd> | 上一个动画或幻灯片 |
+| <kbd>上</kbd> | 上一张幻灯片 |
+| <kbd>下</kbd> | 下一张幻灯片 |
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
+<img
+  v-click
+  class="absolute -bottom-9 -left-7 w-80 opacity-50"
+  src="https://sli.dev/assets/arrow-bottom-left.svg"
+  alt=""
+/>
+<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
 
-Non-code blocks are ignored.
+---
+layout: default
+---
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
+# 部署
+
+使用 GitHub + GitHub Pages 部署
+
+通过 GitHub Actions 在 GitHub Pages 上部署你的幻灯片，请按照以下步骤操作：
+
+1. 在你的仓库中上传所有项目文件（例如命名为 repo-name）
+2. 创建 .github/workflows/deploy.yml 文件，编写合适的内容，以通过 GitHub Actions 将你的幻灯片部署到 GitHub Pages
+3. 在你的仓库中，转到 Settings > Pages。在 Build and deployment 下，选择 GitHub Actions
+4. 最后，将更改推送到 main 分支并等待 GitHub Action 工作流完成。你应该看到站点部署到 https://username.github.io/repo-name/ 或 https://custom-domain/，这取决于你的设置。你的站点将在每次推送到 main 分支时自动部署。
+
+
 
 ---
 
-# Components
 
-<div grid="~ cols-2 gap-4">
-<div>
+<img src="/deploy-settings.png" style="height: 100%; display: block; margin: 0 auto;" />
 
-You can use Vue components directly inside your slides.
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
 
-```html
-<Counter :count="10" />
+---
+
+```md {all}{maxHeight: '100%'}
+name: Deploy My Slide
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Setup @antfu/ni
+        run: npm i -g @antfu/ni
+
+      - name: Install dependencies
+        run: nci
+
+      - name: Build
+        run: nr build --base /${{github.event.repository.name}}/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
 ```
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
 
 ---
 
@@ -455,189 +505,73 @@ const final = {
 
 </div>
 
----
 
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
 
 ---
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
+layout: cover
 ---
 
-# Draggable Elements
+想象一个场景：同事a和同事b因某种原因共用一个开发分支 feature，同事a写了一堆代码，提交了一次代码，同事b此时也写了一堆代码，也要提交一次代码。
 
-Double-click on the draggable elements to edit their positions.
+如果稍不注意，提交历史就会不那么好看了，这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
 
-<br>
+![混乱的提交历史](/chaotic-git-commit-history.png)
 
-###### Directive Usage
 
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
 
 ---
-src: ./pages/imported-slides.md
-hide: false
+layout: cover
 ---
+
+git pull = git fetch + git merge，在执行 git pull 时，其实是有一步合并操作的
+
+
+
+---
+layout: cover
+---
+
+# 解决办法1
+
+每次 add 前先执行 pull，如果有冲突，本地解决冲突，然后提交（如果在commit后，另外有一个同事就在此时提交代码到远程仓库了，此方法是不能保证线性提交历史的）
+
+上文说到 git pull 其实是有 merge 操作的，那这样为什么可以保证线性提交历史呢？原因：
+
+1. 没有冲突的情况下是会默认执行了快进合并，此时不会强制创建合并提交历史的
+2. 即使有冲突，此时还没有 commit 操作，解决冲突后，执行 add 和 commit 操作，还是会只有一次提交记录
+
+
+
+---
+layout: cover
+---
+
+# 解决办法2(终极解决办法)
+
+使用 git pull --rebase
+
+```sh {all|1-2|3|4|5-9|all} twoslash
+git add .
+git commit -m "新增一行打印（1）"
+git push
+# error
+git pull --rebase
+# 处理冲突
+git commit -m "新增一行打印（2）"
+git rebase --continue
+git push
+```
+
 
 ---
 
-# Monaco Editor
+<img src="/git-pull--rebase.png" style="height: 100%; display: block; margin: 0 auto;" />
 
-Slidev provides built-in Monaco Editor support.
 
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
 
 ---
 layout: center
 class: text-center
 ---
 
-# Learn More
-
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
-
-<PoweredBySlidev mt-10 />
+# 谢谢！
