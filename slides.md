@@ -751,13 +751,71 @@ console.log(`vue ${version}`)
 console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
 ```
 
+
+---
+layout: cover
+---
+
+想象一个场景：同事a和同事b因某种原因共用一个开发分支 feature，同事a写了一堆代码，提交了一次代码，同事b此时也写了一堆代码，也要提交一次代码。
+
+如果稍不注意，提交历史就会不那么好看了，这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
+
+![混乱的提交历史](/chaotic-git-commit-history.png)
+
+
+---
+layout: cover
+---
+
+git pull = git fetch + git merge，在执行 git pull 时，其实是有一步合并操作的
+
+
+
+---
+layout: cover
+---
+
+# 解决办法1
+
+每次 add 前先执行 pull，如果有冲突，本地解决冲突，然后提交（如果在commit后，另外有一个同事就在此时提交代码到远程仓库了，此方法是不能保证线性提交历史的）
+
+上文说到 git pull 其实是有 merge 操作的，那这样为什么可以保证线性提交历史呢？原因：
+
+1. 没有冲突的情况下是会默认执行了快进合并，此时不会强制创建合并提交历史的
+2. 即使有冲突，此时还没有 commit 操作，解决冲突后，执行 add 和 commit 操作，还是会只有一次提交记录
+
+
+---
+layout: cover
+---
+
+# 解决办法2(终极解决办法)
+
+使用 git pull --rebase
+
+```sh {all|1-2|3|4|5-9|all} twoslash
+git add .
+git commit -m "新增一行打印（1）"
+git push
+# error
+git pull --rebase
+# 处理冲突
+git commit -m "新增一行打印（2）"
+git rebase --continue
+git push
+```
+
+
+---
+
+
+<img src="/git-pull--rebase.png" style="height: 100%; display: block; margin: 0 auto;" />
+
+
+
 ---
 layout: center
 class: text-center
 ---
 
-# Learn More
-
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
-
-<PoweredBySlidev mt-10 />
+# 谢谢！
