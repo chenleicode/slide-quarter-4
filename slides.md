@@ -119,6 +119,33 @@ Slidev 基于以下工具和技术构建：
 - [**Mermaid**](https://mermaid-js.github.io/mermaid) - 基于文本的图表绘制工具
 
 
+---
+transition: slide-up
+level: 2
+---
+
+# 导航
+
+将鼠标悬停在左下角以查看导航控制面板，[了解更多](https://cn.sli.dev/guide/ui#navigation-bar)
+
+## 键盘快捷键
+
+|     |     |
+| --- | --- |
+| <kbd>右</kbd> / <kbd>空格</kbd>| 下一个动画或幻灯片 |
+| <kbd>左</kbd>  / <kbd>Shift</kbd><kbd>空格</kbd> | 上一个动画或幻灯片 |
+| <kbd>上</kbd> | 上一张幻灯片 |
+| <kbd>下</kbd> | 下一张幻灯片 |
+
+<img
+  v-click
+  class="absolute -bottom-9 -left-7 w-80 opacity-50"
+  src="https://sli.dev/assets/arrow-bottom-left.svg"
+  alt=""
+/>
+<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
+
+
 
 ---
 transition: fade-out
@@ -155,7 +182,7 @@ yarn create slidev # yarn
 transition: fade-out
 ---
 
-# 语法 --- Frontmatter 和 Headmatter
+# Frontmatter & Headmatter
 
 在每张幻灯片的开头，你可以添加一个可选的 frontmatter 来配置幻灯片。第一个 frontmatter 块称为 headmatter，可以配置整个幻灯片集。其余的是用于单个幻灯片的 frontmatters
 
@@ -185,7 +212,7 @@ background: /background-1.png
 transition: fade-out
 ---
 
-# 语法 --- 备注
+# 备注
 
 每张幻灯片的末尾的注释块（若有），将被视为幻灯片的备注。它们将在用户界面中显示，以供您在演示过程中参考
 
@@ -208,7 +235,7 @@ layout: cover
 transition: slide-up
 ---
 
-# 语法 --- 代码块
+# 代码块
 
 ```ts {all|1|3-4|6|all} twoslash
 import { computed, ref } from 'vue'
@@ -275,31 +302,47 @@ layout: xxx # 布局
 <div class="mt10" v-click>除了以上内置布局，也可以自定义布局</div>
 
 
----
-transition: slide-up
-level: 2
+
 ---
 
-# 导航
+# 动画
 
-将鼠标悬停在左下角以查看导航控制面板，[了解更多](https://cn.sli.dev/guide/ui#navigation-bar)
+你可以在元素上添加 `v-click` 来添加点击动画。
 
-## 键盘快捷键
+<div v-click>
 
-|     |     |
-| --- | --- |
-| <kbd>右</kbd> / <kbd>空格</kbd>| 下一个动画或幻灯片 |
-| <kbd>左</kbd>  / <kbd>Shift</kbd><kbd>空格</kbd> | 上一个动画或幻灯片 |
-| <kbd>上</kbd> | 上一张幻灯片 |
-| <kbd>下</kbd> | 下一张幻灯片 |
+点击幻灯片时显示：
 
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
+```html
+<div v-click>点击幻灯片时显示。</div>
+```
+
+</div>
+
+<br>
+
+<v-click>
+
+<span v-mark.red="3"><code>v-mark</code> 指令</span>
+还允许你添加
+<span v-mark.circle.orange="4">内联标记</span>
+， 由 [Rough Notation](https://roughnotation.com/) 提供支持：
+
+```html
+<span v-mark.underline.orange>内联标记</span>
+```
+
+</v-click>
+
+<div mt-20 v-click>
+
+[了解更多](https://sli.dev/guide/animations#click-animation)
+
+</div>
+
+
+
+
 
 
 ---
@@ -390,61 +433,35 @@ jobs:
 
 ---
 
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
-
-
-
----
-
 # LF
 
 <div v-click>当前有两种主流换行符，分别是 LF(linux, mac)，CRLF(windows)</div>
 
 <span v-click>对于 Windows 用户，应该使用哪一种呢？</span><span v-click style="color: red">LF</span>
 
-<div v-click class="mt5">
+<div v-click class="mt10">
 原因：
+</div>
 
-- 绝大多数项目都是强制使用 LF, 有的必须要在本地使用类似 editorconfig 的工具强制转换后才能提交
-- 讨厌的 warning
+<div v-click>
+1. 绝大多数项目都是强制使用 LF, 有的必须要在本地使用类似 editorconfig 的工具强制转换后才能提交
+</div>
+
+<div v-click>
+2. 讨厌的 warning
 <img src="/git-add.png" />
-- 使用多数前端脚手架生成的代码都是 LF，原有代码是 CRLF
-- 提高跨平台兼容性
-- ...
+</div>
 
+<div v-click>
+4. 使用多数前端脚手架生成的代码都是 LF，原有代码是 CRLF
+</div>
+
+<div v-click>
+5. 提高跨平台兼容性
+</div>
+
+<div v-click>
+  ...
 </div>
 
 
@@ -473,17 +490,23 @@ git config --global core.autocrlf input
 
 ---
 
-<div v-click>场景：同事a和同事b因某种原因共用一个开发分支 git-test-1，同事a写了一堆代码，提交了代码，同事b此时也写了一堆代码，也要提交代码。</div>
+# 线性提交历史
+
+<div>场景：同事a和同事b因某种原因共用一个开发分支 git-test-1，同事a写了一堆代码，提交了代码，同事b此时也写了一堆代码，也要提交代码。</div>
 
 <div v-click><img src="/git-commit.png" /></div>
 
 <div v-click class="mt8">如果稍不注意，提交历史就会不那么好看了</div>
 
 <div v-click class="mt2">
-这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
 
 <img src="/chaotic-git-commit-history.png" />
 </div>
+
+<!--
+这是在一个分支上的提交记录
+这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
+ -->
 
 
 
@@ -501,34 +524,53 @@ git pull = git fetch + git merge
 
 # 解决办法1
 
-<div v-click>
+<div>
 每次 add 前先执行 pull，如果有冲突，本地解决冲突(stash 解决)，然后提交
 
-上文说到 git pull 其实是有 merge 操作的，那这样为什么可以保证线性提交历史呢？原因：
+上文说到 git pull 其实是有 merge 操作的，那这样为什么可以保证线性提交历史呢？
 
-1. 没有冲突的情况下是会默认执行了快进合并，此时不会强制创建合并提交历史的
-2. 即使有冲突，此时还没有 commit 操作，解决冲突后，执行 add 和 commit 操作，还是会只有一次提交记录(如果使用commit解决冲突，还是保证不了线性提交历史)
+原因：
+
+1. 没有冲突的情况下，默认执行了快进合并，此时不会强制创建合并提交的
+2. 有冲突的情况下，打断了 merge 操作，当处理完冲突并标记冲突已解决，然后 commit，push，这个过程只有一次 commit，还是保持线性提交历史
+
+> 如果使用 commit 解决冲突，还是保证不了线性提交历史
 </div>
+
+<!-- 
+这种情况是大多数
+ -->
 
 
 
 ---
 
-# 解决办法2(终极解决办法)
+
+# 解决办法2（终极）
 
 使用 git pull --rebase
 
-```sh {all|1-2|3|4|5-9|all} twoslash
+```sh {all|1|2|3|4|5|6|7|8|9|all} twoslash
 git add .
-git commit -m "新增一行打印（1）"
+git commit -m "first commit"
 git push
-# error
+
 git pull --rebase
-# 处理冲突
-git commit -m "新增一行打印（2）"
+
+git commit -m "second commit"
 git rebase --continue
 git push
 ```
+
+
+<div v-if="$clicks == 4" v-click="[4, 5]">
+  <img src="/git-push-error.png" />
+</div>
+
+<div v-if="$clicks == 6" v-click="[6, 7]">
+  <img src="/git-pull-rebase-error.png" style="height: 220px" />
+</div>
+
 
 
 ---
