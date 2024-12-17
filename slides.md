@@ -43,27 +43,6 @@ overviewSnapshots: true # TODO 暂时没有明白什么意思
 
 
 ---
-layout: two-cols
-hideInToc: true
----
-
-# 目录
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="1" columns="1" class="toc-class" />
-
-<style>
-.toc-class {}
-h1 {
-  margin-top: 200px;
-  margin-left: 100px;
-}
-</style>
-
-
-
----
 transition: fade-out
 ---
 
@@ -71,16 +50,16 @@ transition: fade-out
 
 Slidev 是一个为开发者设计的幻灯片制作和演示工具，具有以下特点：
 
-- 📝 [**Markdown 支持**](https://cn.sli.dev/guide/syntax.html) —— 使用你最喜欢的编辑器和工作流编写 Markdown 文件
-- 🧑‍💻 [**对开发者友好**](https://cn.sli.dev/guide/syntax.html#code-blocks) —— 内置代码高亮、实时编码等功能
-- 🌈 [**灵活样式**](https://cn.sli.dev/guide/syntax.html#embedded-styles) —— 使用 [Windi CSS](https://windicss.org/) 按需使用的实用类和易用的内嵌样式表
-- 🤹 [**交互**](https://cn.sli.dev/custom/directory-structure.html#components) —— 无缝嵌入 Vue 组件
-- 🎙 [**演示者模式**](https://cn.sli.dev/guide/presenter-mode.html) —— 可以使用另一个窗口，甚至是你的手机来控制幻灯片
-- 📰 [**图表支持**](https://cn.sli.dev/guide/syntax.html#diagrams) —— 使用文本描述语言创建图表
-- 🌟 [**图标**](https://cn.sli.dev/guide/syntax.html#icons) —— 能够直接从任意图标库中获取图标
-- 🎥 [**录制**](https://cn.sli.dev/guide/recording.html) —— 内置录制功能和摄像头视图
-- 📤 [**跨平台**](https://cn.sli.dev/guide/exporting.html) —— 能够导出 PDF、PNG 文件，甚至是一个可以托管的单页应用
-- ⚡️ [**快速**](https://vitejs.dev) —— 基于 [Vite](https://vitejs.dev) 的即时重载
+- 📝 **Markdown 支持** - 专注于使用 Markdown 编写内容，然后再进行样式优化
+- 🎨 **可主题化** - 主题可以作为 npm 包共享和重用
+- 🧑‍💻 **对开发者友好** - 代码高亮、实时编码和自动补全
+- 🤹 **交互性** - 嵌入 Vue 组件以增强表达
+- 🎙 **演示者模式** - 可以使用另一个窗口，甚至是你的手机来控制幻灯片
+- 🎥 **录制功能** - 内置录制和摄像头视图
+- 📤 **便携性** - 导出为 PDF、PPTX、PNG，甚至是可托管的单页应用
+- 🛠 **可定制** - 几乎任何在网页上可能实现的功能都可以在 Slidev 中实现
+
+<br>
 <br>
 
 阅读更多关于 [为什么选择 Slidev？](https://sli.dev/guide/why)
@@ -96,6 +75,12 @@ h1 {
   -moz-text-fill-color: transparent;
 }
 </style>
+
+<!-- 
+这里是一些备注，
+
+只有在演讲者模式，演讲者自己能看到，观众看不到
+-->
 
 
 
@@ -117,6 +102,20 @@ Slidev 基于以下工具和技术构建：
 - [**Drauu**](https://github.com/antfu/drauu) - 用于在幻灯片上绘图和批注
 - [**KaTeX**](https://katex.org/) - 用于渲染 LaTeX 数学公式
 - [**Mermaid**](https://mermaid-js.github.io/mermaid) - 基于文本的图表绘制工具
+- ...
+
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
 
 
 ---
@@ -124,7 +123,7 @@ transition: slide-up
 level: 2
 ---
 
-# 导航
+# 导航控制面板
 
 将鼠标悬停在左下角以查看导航控制面板，[了解更多](https://cn.sli.dev/guide/ui#navigation-bar)
 
@@ -144,6 +143,24 @@ level: 2
   alt=""
 />
 <p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">这儿!</p>
+
+
+
+---
+transition: slide-up
+---
+
+# 演讲者模式
+
+点击 <carbon-user-speaker class="inline-icon-btn"/> 按钮或访问 `http://localhost:<port>/presenter` 来进入演讲者模式。
+
+<div v-click>
+在演讲中，建议打开两个浏览器窗口：一个在播放模式用于观众，另一个在演讲者模式用于你。然后你可以将第一个屏幕分享给观众，保留第二个屏幕给自己。每当你在演讲者模式中导航时，观众的屏幕也会同步更新。
+</div>
+
+<div v-click class="mt3">
+  <img src="/presenter-mode.png" style="height: 320px" />
+</div>
 
 
 
