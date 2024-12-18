@@ -119,6 +119,55 @@ h1 {
 
 
 ---
+layout: intro
+glowSeed: 15
+glowOpacity: 0.3
+class: pl-30
+---
+
+# Anthony Fu
+
+<div class="[&>*]:important-leading-10 opacity-80">
+
+<a href="https://vitejs.dev" target="_blank" class="no-underline">Vite</a>, 
+<a href="https://vuejs.org" target="_blank" class="no-underline">Vue</a>, 
+<a href="https://nuxtjs.org" target="_blank" class="no-underline">Nuxt</a> 核心团队成员<br>
+<a href="https://vitest.dev" target="_blank" class="no-underline">Vitest</a>, 
+<a href="https://sli.dev" target="_blank" class="no-underline">Slidev</a>, 
+<a href="https://github.com/unocss/unocss" target="_blank" class="no-underline">UnoCSS, </a>
+<a href="https://github.com/type-challenges/type-challenges" target="_blank" class="no-underline">Type Challenges, </a>
+<a href="https://elk.zone" target="_blank" class="no-underline">Elk</a> 作者<br>
+<a href="https://github.com/eslint-stylistic/eslint-stylistic" target="_blank" class="no-underline">ESLint Stylistic, </a>
+<a href="https://shiki.matsu.io" target="_blank" class="no-underline">Shiki, </a>
+<a href="https://github.com/microsoft/TypeScript-Twoslash" target="_blank" class="no-underline">Twoslash, </a>
+<a href="https://github.com/wenyan-lang/wenyan" target="_blank" class="no-underline">wen-yan lang</a> 维护者<br>
+就职于 <a href="https://nuxtlabs.com" target="_blank" class="no-underline">NuxtLabs</a><br>
+
+</div>
+
+<div my-10 w-min flex="~ gap-1" items-center justify-center>
+  <div i-ri-user-3-line op50 ma text-xl></div>
+  <div><a href="https://antfu.me" target="_blank" class="border-none! font-300">antfu.me</a></div>
+  <div i-ri-github-line op50 ma text-xl ml4></div>
+  <div><a href="https://github.com/antfu" target="_blank" class="border-none! font-300">antfu</a></div>
+  <div i-ri-bluesky-line op50 ma text-xl ml4></div>
+  <div><a href="https://bsky.app/antfu.me" target="_blank" class="border-none! font-300">antfu.me</a></div>
+  <div i-ri-twitter-x-line op50 ma text-xl ml4></div>
+  <div><a href="https://twitter.com/antfu7" target="_blank" class="border-none! font-300">antfu7</a></div>
+  <div i-ri-bilibili-line op50 ma text-xl ml4></div>
+  <div><a href="https://space.bilibili.com/668380" target="_blank" class="border-none! font-300" ws-nowrap>AnthonyFu 一个托尼</a></div>
+</div>
+
+<img src="https://antfu.me/avatar.png" absolute top-36 right-30 w-40 rounded-full />
+
+<style>
+.no-underline {
+  border-bottom-width: 0;
+}
+</style>
+
+
+---
 transition: slide-up
 level: 2
 ---
