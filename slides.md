@@ -119,6 +119,55 @@ h1 {
 
 
 ---
+layout: intro
+glowSeed: 15
+glowOpacity: 0.3
+class: pl-30
+---
+
+# Anthony Fu
+
+<div class="[&>*]:important-leading-10 opacity-80">
+
+<a href="https://vitejs.dev" target="_blank" class="no-underline">Vite</a>, 
+<a href="https://vuejs.org" target="_blank" class="no-underline">Vue</a>, 
+<a href="https://nuxtjs.org" target="_blank" class="no-underline">Nuxt</a> 核心团队成员<br>
+<a href="https://vitest.dev" target="_blank" class="no-underline">Vitest</a>, 
+<a href="https://sli.dev" target="_blank" class="no-underline">Slidev</a>, 
+<a href="https://github.com/unocss/unocss" target="_blank" class="no-underline">UnoCSS, </a>
+<a href="https://github.com/type-challenges/type-challenges" target="_blank" class="no-underline">Type Challenges, </a>
+<a href="https://elk.zone" target="_blank" class="no-underline">Elk</a> 作者<br>
+<a href="https://github.com/eslint-stylistic/eslint-stylistic" target="_blank" class="no-underline">ESLint Stylistic, </a>
+<a href="https://shiki.matsu.io" target="_blank" class="no-underline">Shiki, </a>
+<a href="https://github.com/microsoft/TypeScript-Twoslash" target="_blank" class="no-underline">Twoslash, </a>
+<a href="https://github.com/wenyan-lang/wenyan" target="_blank" class="no-underline">wen-yan lang</a> 维护者<br>
+就职于 <a href="https://nuxtlabs.com" target="_blank" class="no-underline">NuxtLabs</a><br>
+
+</div>
+
+<div my-10 w-min flex="~ gap-1" items-center justify-center>
+  <div i-ri-user-3-line op50 ma text-xl></div>
+  <div><a href="https://antfu.me" target="_blank" class="border-none! font-300">antfu.me</a></div>
+  <div i-ri-github-line op50 ma text-xl ml4></div>
+  <div><a href="https://github.com/antfu" target="_blank" class="border-none! font-300">antfu</a></div>
+  <div i-ri-bluesky-line op50 ma text-xl ml4></div>
+  <div><a href="https://bsky.app/antfu.me" target="_blank" class="border-none! font-300">antfu.me</a></div>
+  <div i-ri-twitter-x-line op50 ma text-xl ml4></div>
+  <div><a href="https://twitter.com/antfu7" target="_blank" class="border-none! font-300">antfu7</a></div>
+  <div i-ri-bilibili-line op50 ma text-xl ml4></div>
+  <div><a href="https://space.bilibili.com/668380" target="_blank" class="border-none! font-300" ws-nowrap>AnthonyFu 一个托尼</a></div>
+</div>
+
+<img src="https://antfu.me/avatar.png" absolute top-36 right-30 w-40 rounded-full />
+
+<style>
+.no-underline {
+  border-bottom-width: 0;
+}
+</style>
+
+
+---
 transition: slide-up
 level: 2
 ---
@@ -147,7 +196,7 @@ level: 2
 
 
 ---
-transition: slide-up
+transition: fade-out
 ---
 
 # 演讲者模式
@@ -170,23 +219,27 @@ transition: fade-out
 
 # 快速上手
 
-<div v-click>在终端运行以下命令来创建一个新的 Slidev 项目：</div>
+<div v-click class="mt5">
+1. 在终端运行以下命令:
+</div>
 
-<div v-click>
+<div v-click class="mt3">
 
 ```sh
 npm init slidev@latest # npm
-
 pnpm create slidev # pnpm
-
 yarn create slidev # yarn
 ```
 
 </div>
 
-<div v-click class="mt5">根据指引，输入项目名称，并按照提示完成项目创建</div>
+<div v-click class="mt8">
+2. 根据指引，并按照提示完成项目创建
+</div>
 
-<div v-click class="mt5">幻灯片内容在 slides.md 文件中，初始内容包含了 Slidev 的大部分功能的演示</div>
+<div v-click class="mt3">
+<img src="/get-started-tip.png" style="height: 230px" />
+</div>
 
 
 
@@ -249,24 +302,32 @@ layout: cover
 
 
 ---
-transition: slide-up
+transition: fade-out
 ---
 
 # 代码块
 
-```ts {all|1|3-4|6|all} twoslash
-import { computed, ref } from 'vue'
+```ts  twoslash
+/**
+ * 钉钉环境下的标题设置
+ */
 
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
+import { onMounted } from 'vue'
 
-doubled.value = 2
+export function useDDTitle(ddTitle: string) {
+  function setTitle(ddTitle: string) {
+      window.dd.biz.navigation.setTitle({
+        title: ddTitle,
+      })
+  }
 
-// 无论代码块的第一行代码代码是什么位置，行号都是从1开始
-// 显示步骤：1全部代码高亮 2第一行代码高亮 3第三至第四行代码高亮 4第六行代码高亮 5全部代码高亮
+  onMounted(() => {
+    setTitle(ddTitle)
+  })
+}
 ```
 
-<arrow v-click="[3, 4]" x1="350" y1="190" x2="155" y2="235" color="#953" width="2" arrowSize="1" />
+<arrow v-click x1="650" y1="220" x2="455" y2="275" color="#953" width="2" arrowSize="1" />
 
 [了解更多](https://cn.sli.dev/guide/syntax#code-block)
 
@@ -346,6 +407,7 @@ layout: xxx # 布局
 ， 由 [Rough Notation](https://roughnotation.com/) 提供支持：
 
 ```html
+<span v-mark.red="3"><code>v-mark</code> 指令</span>
 <span v-mark.underline.orange>内联标记</span>
 ```
 
@@ -356,9 +418,6 @@ layout: xxx # 布局
 [了解更多](https://sli.dev/guide/animations#click-animation)
 
 </div>
-
-
-
 
 
 
@@ -460,20 +519,20 @@ jobs:
 原因：
 </div>
 
-<div v-click>
+<div v-click class="mt1">
 1. 绝大多数项目都是强制使用 LF, 有的必须要在本地使用类似 editorconfig 的工具强制转换后才能提交
 </div>
 
-<div v-click>
+<div v-click class="mt1">
 2. 讨厌的 warning
-<img src="/git-add.png" />
+<img class="mt1" src="/git-add.png" />
 </div>
 
-<div v-click>
+<div v-click class="mt1">
 4. 使用多数前端脚手架生成的代码都是 LF，原有代码是 CRLF
 </div>
 
-<div v-click>
+<div v-click class="mt1">
 5. 提高跨平台兼容性
 </div>
 
@@ -492,7 +551,7 @@ jobs:
 如何使用：
 
 ```sh
-# git 全局设置
+# Git 全局设置
 git config --global core.autocrlf input
 ```
 
@@ -509,9 +568,11 @@ git config --global core.autocrlf input
 
 # 线性提交历史
 
-<div>场景：同事a和同事b因某种原因共用一个开发分支 git-test-1，同事a写了一堆代码，提交了代码，同事b此时也写了一堆代码，也要提交代码。</div>
+<div>
+场景：同事a和同事b因某种原因共用一个开发分支 git-test-1，同事a写了一堆代码，提交了代码，同事b此时也写了一堆代码，也要提交代码。
+</div>
 
-<div v-click><img src="/git-commit.png" /></div>
+<div v-click class="mt2"><img src="/git-commit.png" /></div>
 
 <div v-click class="mt8">如果稍不注意，提交历史就会不那么好看了</div>
 
@@ -523,7 +584,7 @@ git config --global core.autocrlf input
 <!--
 这是在一个分支上的提交记录
 这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
- -->
+-->
 
 
 
@@ -531,21 +592,33 @@ git config --global core.autocrlf input
 layout: center
 ---
 
-git pull = git fetch + git merge
+# git pull = git fetch + git merge
 
+<style>
+h1 {
+  color: white;
+}
+</style>
+
+<!--
 在执行 git pull 时，其实是有一步合并操作的
+-->
 
 
 
 ---
 
-# 解决办法1
+# 解决办法1（99%情况下可行）
 
-<div>
+<div v-click class="mt5">
 每次 add 前先执行 pull，如果有冲突，本地解决冲突(stash 解决)，然后提交
+</div>
 
+<div v-click class="mt5">
 上文说到 git pull 其实是有 merge 操作的，那这样为什么可以保证线性提交历史呢？
+</div>
 
+<div v-click class="mt5">
 原因：
 
 1. 没有冲突的情况下，默认执行了快进合并，此时不会强制创建合并提交的
@@ -556,43 +629,83 @@ git pull = git fetch + git merge
 
 <!-- 
 这种情况是大多数
- -->
+-->
 
 
 
 ---
 
 
-# 解决办法2（终极）
+# 解决办法2（有冲突情况下）
 
 使用 git pull --rebase
 
-```sh {all|1|2|3|4|5|6|7|8|9|all} twoslash
+```sh {all|1|2|3|4|5|6|7|all} twoslash
 git add .
-git commit -m "first commit"
+git commit -m "first commit message"
 git push
-
 git pull --rebase
-
-git commit -m "second commit"
+git commit -m "second commit message"
 git rebase --continue
 git push
 ```
 
 
-<div v-if="$clicks == 4" v-click="[4, 5]">
+<div v-if="$clicks == 3" v-click="[3, 4]" class="mt3">
   <img src="/git-push-error.png" />
 </div>
 
-<div v-if="$clicks == 6" v-click="[6, 7]">
+<div v-if="$clicks == 4" v-click="[4, 5]" class="mt3">
   <img src="/git-pull-rebase-error.png" style="height: 220px" />
+</div>
+
+<div v-if="$clicks == 6" v-click="[6, 7]" class="mt3">
+  <img src="/git-rebase--continue-conflict.png" />
+</div>
+
+<div v-if="$clicks == 8" v-click="[8, 9]" class="mt3">
+  <img src="/git-graph-conflict.png" style="height: 220px" />
+</div>
+
+
+---
+
+# 解决办法2（无冲突情况下）
+
+使用 git pull --rebase
+
+```sh {all|1|2|3|4|5|all} twoslash
+git add .
+git commit -m "first commit message"
+git push
+git pull --rebase
+git push
+```
+
+
+<div v-if="$clicks == 3" v-click="[3, 4]" class="mt3">
+  <img src="/git-push-error.png" />
+</div>
+
+<div v-if="$clicks == 4" v-click="[4, 5]" class="mt3">
+  <img src="/git-pull--rebase-sucess.png" style="height: 220px" />
+</div>
+
+<div v-if="$clicks == 6" v-click="[6, 7]" class="mt3">
+  <img src="/git-graph-noconflict.png" style="height: 220px" />
 </div>
 
 
 
 ---
+layout: two-cols
+---
 
-<img src="/git-pull--rebase.png" style="height: 100%; display: block; margin: 0 auto;" />
+<img v-click src="/git-conflict.png" style="height: 100%" class="mr2" />
+
+::right::
+
+<img v-click src="/git-noconflict.png" class="ml2" />
 
 
 
