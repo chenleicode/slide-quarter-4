@@ -286,7 +286,7 @@ transition: fade-out
 
 # 备注
 
-每张幻灯片的末尾的注释块（若有），将被视为幻灯片的备注。它们将在用户界面中显示，以供您在演示过程中参考
+每张幻灯片的末尾的注释，将被视为幻灯片的备注。它们将在用户界面中显示，以供您在演示过程中参考
 
 ```md
 ---
@@ -330,8 +330,6 @@ export function useDDTitle(ddTitle: string) {
 ```
 
 <arrow v-click x1="650" y1="220" x2="455" y2="275" color="#953" width="2" arrowSize="1" />
-
-[了解更多](https://cn.sli.dev/guide/syntax#code-block)
 
 
 
@@ -429,19 +427,18 @@ layout: default
 
 # 部署
 
-使用 GitHub + GitHub Pages 部署
+使用 GitHub Pages 部署
 
 通过 GitHub Actions 在 GitHub Pages 上部署你的幻灯片，请按照以下步骤操作：
 
 1. 在你的仓库中上传所有项目文件（例如命名为 repo-name）
 2. 创建 .github/workflows/deploy.yml 文件，编写合适的内容，以通过 GitHub Actions 将你的幻灯片部署到 GitHub Pages
 3. 在你的仓库中，转到 Settings > Pages。在 Build and deployment 下，选择 GitHub Actions
-4. 最后，将更改推送到 main 分支并等待 GitHub Action 工作流完成。你应该看到站点部署到 https://username.github.io/repo-name/ 或 https://custom-domain/，这取决于你的设置。你的站点将在每次推送到 main 分支时自动部署。
+4. 最后，将更改推送到 main 分支并等待 GitHub Action 工作流完成。你应该看到站点部署到 https://username.github.io/repo-name/ 或 https://custom-domain/ ，这取决于你的设置。你的站点将在每次推送到 main 分支时自动部署。
 
 
 
 ---
-
 
 <img src="/deploy-settings.png" style="height: 100%; display: block; margin: 0 auto;" />
 
@@ -584,6 +581,18 @@ git config --global core.autocrlf input
 <img src="/chaotic-git-commit-history.png" />
 </div>
 
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
 <!--
 这是在一个分支上的提交记录
 这种历史记录包含了多个分叉点和合并提交，就会导致 git 提交历史看起来非常混乱
@@ -630,6 +639,18 @@ h1 {
 > 如果使用 commit 解决冲突，还是保证不了线性提交历史
 </div>
 
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
 <!-- 
 这种情况是大多数
 -->
@@ -670,6 +691,18 @@ git push
   <img src="/git-graph-conflict.png" style="height: 220px" />
 </div>
 
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
 
 ---
 
@@ -698,6 +731,18 @@ git push
   <img src="/git-graph-noconflict.png" style="height: 220px" />
 </div>
 
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
 
 
 ---
@@ -720,5 +765,3 @@ glowY: 120
 ---
 
 # 谢谢
-
-幻灯片在 [slide-quarter-4](https://chenlei0608.github.io/slide-quarter-4/1)
