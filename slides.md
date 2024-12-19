@@ -8,7 +8,7 @@ background: /home.jpg
 # 网页的标题模板，`%s` 会被页面的标题(title)替换。默认值是 %s - Slidev
 titleTemplate: '%s'
 # some information about your slides (markdown enabled)
-title: 陈磊的 Web PPT
+title: Slidev | 程序员的演示文稿工具
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -27,7 +27,9 @@ mdc: true
 overviewSnapshots: true # TODO 暂时没有明白什么意思
 ---
 
-# 第四季度技术分享
+# Slidev | 程序员的演示文稿工具
+
+分享人：陈磊
 
 <div class="abs-br m-6 flex gap-2">
   <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="GitHub 地址"
@@ -82,6 +84,8 @@ Microsoft PowerPoint 和 Apple Keynote 。它们直观易学。
 Slidev 旨在为程序员制作的幻灯片提供极强的灵活性和交互性，并帮助程序员使用熟悉的技术来使演示更加有趣、有表现力和吸引力。
 
 Slidev 的幻灯片以 Markdown 的格式编写。这帮助您专注于内容。同时，Slidev 的幻灯片在浏览器中呈现，这意味着几乎没有什么效果不可能被实现，一切您在 Web 应用中能做的都可以应用到您的幻灯片中。
+
+使用场景：面向开发团队的技术分享，主题演讲，学术研究与报告...
 -->
 
 
