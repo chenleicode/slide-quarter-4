@@ -644,7 +644,7 @@ h1 {
 git add .
 git commit -m "first commit message"
 git push
-git pull --rebase
+git pull --rebase # 此时会有冲突，解决冲突
 git commit -m "second commit message"
 git rebase --continue
 git push
@@ -710,8 +710,12 @@ layout: two-cols
 
 
 ---
-layout: center
-class: text-center
+layout: intro
+class: text-center pb-5
+glowX: 50
+glowY: 120
 ---
 
-# 谢谢！
+# 谢谢
+
+幻灯片在 [slide-quarter-4](https://chenlei0608.github.io/slide-quarter-4/1)
