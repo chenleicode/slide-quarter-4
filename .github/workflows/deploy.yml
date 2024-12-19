@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 运行环境
 
     steps:
       - uses: actions/checkout@v4 # 检出代码
@@ -29,10 +29,10 @@ jobs:
         run: npm i -g @antfu/ni
 
       - name: Install dependencies
-        run: nci
+        run: nci # 安装依赖
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+        run: nr build --base /${{github.event.repository.name}}/ # 构建
 
       - name: Setup Pages
         uses: actions/configure-pages@v4 # 配置 Pages
@@ -41,11 +41,12 @@ jobs:
         with:
           path: dist # 构建产物目录
 
+  # 这个 job 负责将 build 作业构建出的静态文件部署到 GitHub Pages
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
+    needs: build # 依赖 build job
     runs-on: ubuntu-latest
     name: Deploy
     steps:

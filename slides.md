@@ -450,54 +450,55 @@ layout: default
 ---
 
 ```md {all}{maxHeight: '100%'}
-name: Deploy My Slide
+name: Deploy My Slides
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # 允许手动触发工作流
   push:
-    branches: [main]
+    branches: [main] # 当推送到 main 分支时，自动触发该工作流
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read # 允许读取仓库内容
+  pages: write # 允许写入 Pages
+  id-token: write # 允许生成 ID 令牌
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages # 限制并发任务数，以避免同时部署多个 Pages 任务
+  cancel-in-progress: false # 不取消正在运行的任务
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 运行环境
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 # 检出代码
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4 # 设置 Node.js 环境
         with:
-          node-version: 'lts/*'
+          node-version: 'lts/*' # 使用最新 LTS 版本
 
       - name: Setup @antfu/ni
         run: npm i -g @antfu/ni
 
       - name: Install dependencies
-        run: nci
+        run: nci # 安装依赖
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+        run: nr build --base /${{github.event.repository.name}}/ # 构建
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v4 # 配置 Pages
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3 # 上传构建产物
         with:
-          path: dist
+          path: dist # 构建产物目录
 
+  # 这个 job 负责将 build 作业构建出的静态文件部署到 GitHub Pages
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
+    needs: build # 依赖 build job
     runs-on: ubuntu-latest
     name: Deploy
     steps:
