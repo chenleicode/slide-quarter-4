@@ -430,10 +430,10 @@ const arr = ref(emptyArray(10))
 
 ```ts {monaco-run}
 import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
+import { emptyArray } from './external'
 
-sayHello()
 console.log(`vue ${version}`)
+// 斐波那契
 console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
 ```
 
