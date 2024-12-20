@@ -336,6 +336,108 @@ export function useDDTitle(ddTitle: string) {
 <arrow v-click x1="650" y1="220" x2="455" y2="275" color="#953" width="2" arrowSize="1" />
 
 
+---
+level: 2
+---
+
+# Shiki Magic Move
+
+由 [shiki-magic-move](https://shiki-magic-move.netlify.app/) 提供支持，Slidev 支持跨多个代码片段的动画效果。
+
+添加多个代码块并用 <code>````md magic-move</code>（四个反引号）包裹它们以启用魔法移动。例如：
+
+````md magic-move {lines: true}
+```ts {*|2|*}
+// 第一步
+const author = reactive({
+  name: 'John Doe',
+  books: [
+    'Vue 2 - Advanced Guide',
+    'Vue 3 - Basic Guide',
+    'Vue 4 - The Mystery'
+  ]
+})
+```
+
+```ts {*|1-2|3-4|3-4,8}
+// 第二步
+export default {
+  data() {
+    return {
+      author: {
+        name: 'John Doe',
+        books: [
+          'Vue 2 - Advanced Guide',
+          'Vue 3 - Basic Guide',
+          'Vue 4 - The Mystery'
+        ]
+      }
+    }
+  }
+}
+```
+
+```ts
+// 第三步
+export default {
+  data: () => ({
+    author: {
+      name: 'John Doe',
+      books: [
+        'Vue 2 - Advanced Guide',
+        'Vue 3 - Basic Guide',
+        'Vue 4 - The Mystery'
+      ]
+    }
+  })
+}
+```
+
+非代码块将被忽略。
+
+```vue
+<!-- 第四步 -->
+<script setup>
+const author = {
+  name: 'John Doe',
+  books: [
+    'Vue 2 - Advanced Guide',
+    'Vue 3 - Basic Guide',
+    'Vue 4 - The Mystery'
+  ]
+}
+</script>
+```
+````
+
+
+---
+
+# Monaco 编辑器
+
+Slidev 提供内置的 Monaco 编辑器支持。
+
+在代码块中添加 `{monaco}` 将其转换为编辑器：
+
+```ts {monaco}
+import { ref } from 'vue'
+import { emptyArray } from './external'
+
+const arr = ref(emptyArray(10))
+```
+
+使用 `{monaco-run}` 创建一个可以直接在幻灯片中执行代码的编辑器：
+
+```ts {monaco-run}
+import { version } from 'vue'
+import { emptyArray, sayHello } from './external'
+
+sayHello()
+console.log(`vue ${version}`)
+console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
+```
+
+
 
 ---
 transition: slide-up
