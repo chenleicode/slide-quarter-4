@@ -1,11 +1,20 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# 程序员的演示文稿工具
 
-To start the slide show:
+这是我2024年第4季度技术分享，主要介绍 Slidev
 
-- `npm install`
-- `npm run dev`
-- visit <http://localhost:3030>
+## 安装依赖
 
-Edit the [slides.md](./slides.md) to see the changes.
+```sh
+npm install
+```
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+## 本地运行
+
+```sh
+npm run dev
+```
+
+# 鸣谢
+
+- [Slidev](https://sli.dev/)
+- [Anthony Fu](https://github.com/antfu)
