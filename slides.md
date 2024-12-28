@@ -25,10 +25,6 @@ transition: slide-left
 mdc: true
 # take snapshot for each slide in the overview
 overviewSnapshots: true # TODO 暂时没有明白什么意思
-# HTML 标签属性
-htmlAttrs:
-  dir: ltr
-  lang: zh-CN
 ---
 
 # Slidev | 程序员的演示文稿工具
