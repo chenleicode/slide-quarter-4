@@ -32,11 +32,11 @@ overviewSnapshots: true # TODO 暂时没有明白什么意思
 分享人：陈磊
 
 <div class="abs-br m-6 flex gap-2">
-  <a href="https://github.com/chenlei0608/slide-quarter-4" target="_blank" alt="GitHub" title="GitHub 地址"
+  <a href="https://github.com/chenleicode/slide-quarter-4" target="_blank" alt="GitHub" title="GitHub 地址"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
-  <a href="https://chenlei0608.github.io/blog/" target="_blank" alt="GitHub" title="陈磊的博客"
+  <a href="https://chenleicode.top" target="_blank" alt="GitHub" title="陈磊的博客"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon:earth-americas-filled />
   </a>
